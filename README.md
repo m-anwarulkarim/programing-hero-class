@@ -20,9 +20,11 @@
 
 ## any
 
-**A. any যেকোনো ভ্যালুর type হতে পারে এবং তার দ্বারা সাধারনত যেকোনো type এর কাজ করা যায়। TypeScript কোনো warning দেবে না।**
-B. এটা ব্যবহার করলে রানটাইমে error আসতে পারে কিন্তূ তাতখনাত ঝামেলা থেকে মূক্ত হয়া জায়
-C. এটা সরাসরি javscript এর মত কাজ করে
+#### A. any যেকোনো ভ্যালুর type হতে পারে এবং তার দ্বারা সাধারনত যেকোনো type এর কাজ করা যায়। TypeScript কোনো warning দেবে না।\*\*
+
+#### B. এটা ব্যবহার করলে রানটাইমে error আসতে পারে কিন্তূ তাতখনাত ঝামেলা থেকে মূক্ত হয়া জায়
+
+#### C. এটা সরাসরি javscript এর মত কাজ করে
 
 **উদাহরণ:**
 
@@ -43,9 +45,11 @@ data2.toUpperCase();
 
 ---
 
-A.যেকোনো ভ্যালু রাখা যায়, কিন্তু ব্যবহার করতে চাইলে টাইপ চেক করতে হবে। বা Type Assertion ব্যবোহার করতে হবে
-B.এটা any থেকে বেশি safety দেয় । এটা সরাসরি javscript এর মত কাজ করে না ।
-C. type check করা ছাড়া ব্যবহার করলে error আসতে পারে
+#### A.যেকোনো ভ্যালু রাখা যায়, কিন্তু ব্যবহার করতে চাইলে টাইপ চেক করতে হবে। বা Type Assertion ব্যবোহার করতে হবে
+
+#### B.এটা any থেকে বেশি safety দেয় । এটা সরাসরি javscript এর মত কাজ করে না ।
+
+#### C. type check করা ছাড়া ব্যবহার করলে error আসতে পারে
 
 **উদাহরণ:**
 
@@ -69,9 +73,11 @@ usingunknown(true);
 
 ---
 
-A.কোন type এর কোন value ই return করে না ।
-B.never সাধারণত তখনই হয় যখন ফাংশন error throw করে
-C.অথবা infinit loop যখন হয়
+#### A.কোন type এর কোন value ই return করে না ।
+
+#### B.never সাধারণত তখনই হয় যখন ফাংশন error throw করে
+
+#### C.অথবা infinit loop যখন হয়
 
 **উদাহরণ:**
 
@@ -93,7 +99,7 @@ console.log(usingNeverLoop());
 
 # Interface vs Type — পার্থক্য
 
-### A. Interface এ extends ব্যবহার করে অন্য interface কে extends করা যায় এর এটা type দিয়ে করতে গেলে intersection (&) ব্যবোহার করতে হয়
+#### A. Interface এ extends ব্যবহার করে অন্য interface কে extends করা যায় এর এটা type দিয়ে করতে গেলে intersection (&) ব্যবোহার করতে হয়
 
 ```ts
 interface User1 {
@@ -113,7 +119,7 @@ type AddPerson = Person & {
 
 ---
 
-### B. একটা interface অন্য একটা interface কে marge করতে পারে মানে একই নামে আকধিক interface রাখলে marge হয়ে যাই কিন্ত type এর ভিতর এটা নাই
+#### B. একটা interface অন্য একটা interface কে marge করতে পারে মানে একই নামে আকধিক interface রাখলে marge হয়ে যাই কিন্ত type এর ভিতর এটা নাই
 
 ```ts
 interface Box {
@@ -126,7 +132,7 @@ interface Box {
 
 ---
 
-### C. সব থেকে বড় পারথক্য হল type, এটা primitive non-primitive সব কিসুর type হতে পারে কিন্ত interface শধু object জাতিও অরথাত function, array, object এর type হতে পারে
+#### C. সব থেকে বড় পারথক্য হল type, এটা primitive non-primitive সব কিসুর type হতে পারে কিন্ত interface শধু object জাতিও অরথাত function, array, object এর type হতে পারে
 
 ```ts
 type ID = string | number;
