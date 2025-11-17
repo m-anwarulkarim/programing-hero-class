@@ -41,7 +41,9 @@ data2.toUpperCase();
 
 ## unknown
 
-**A.যেকোনো ভ্যালু রাখা যায়, কিন্তু ব্যবহার করতে চাইলে টাইপ চেক করতে হবে। বা Type Assertion ব্যবোহার করতে হবে**
+---
+
+A.যেকোনো ভ্যালু রাখা যায়, কিন্তু ব্যবহার করতে চাইলে টাইপ চেক করতে হবে। বা Type Assertion ব্যবোহার করতে হবে
 B.এটা any থেকে বেশি safety দেয় । এটা সরাসরি javscript এর মত কাজ করে না ।
 C. type check করা ছাড়া ব্যবহার করলে error আসতে পারে
 
@@ -65,7 +67,9 @@ usingunknown(true);
 
 ## never
 
-**A.কোন type এর কোন value ই return করে না ।**
+---
+
+A.কোন type এর কোন value ই return করে না ।
 B.never সাধারণত তখনই হয় যখন ফাংশন error throw করে
 C.অথবা infinit loop যখন হয়
 
@@ -89,62 +93,43 @@ console.log(usingNeverLoop());
 
 # Interface vs Type — পার্থক্য
 
-## **1. Extension / Inheritance**
-
-- interface → `extends` ব্যবহার করে
-- type → `&` (intersection) ব্যবহার করে
+### A. Interface এ extends ব্যবহার করে অন্য interface কে extends করা যায় এর এটা type দিয়ে করতে গেলে intersection (&) ব্যবোহার করতে হয়
 
 ```ts
-interface User {
+interface User1 {
   name: string;
 }
-interface Admin extends User {
+interface User2 extends User1 {
   role: string;
 }
 
 type Person = {
   name: string;
 };
-type Employee = Person & {
+type AddPerson = Person & {
   salary: number;
 };
 ```
 
 ---
 
-## **2. Declaration Merging**
-
-- interface → merge হয়
-- type → merge হয় না
+### B. একটা interface অন্য একটা interface কে marge করতে পারে মানে একই নামে আকধিক interface রাখলে marge হয়ে যাই কিন্ত type এর ভিতর এটা নাই
 
 ```ts
 interface Box {
-  height: number;
+  id: number;
 }
 interface Box {
-  width: number;
+  name: number;
 }
-// Result: { height: number; width: number }
 ```
 
 ---
 
-## **3. Primitive Type Support**
-
-type → primitive, union, tuple, function সবই করা যায়
-interface → object structure only
+### C. সব থেকে বড় পারথক্য হল type, এটা primitive non-primitive সব কিসুর type হতে পারে কিন্ত interface শধু object জাতিও অরথাত function, array, object এর type হতে পারে
 
 ```ts
-type ID = string | number; // possible
-// interface ID = string | number  not possible
+type ID = string | number;
 ```
 
----
-
-# Conclusion
-
-- **any** → সম্পূর্ণ আনলিমিটেড ও unsafe
-- **unknown** → সীমিত কিন্তু নিরাপদ
-- **never** → কখনোই return করে না
-- **interface** → structure modeling ও merging-friendly
-- **type** → flexible ও powerful
+inertface দিয়ে এটা করা যাবে না
