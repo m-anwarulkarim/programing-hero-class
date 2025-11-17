@@ -16,63 +16,73 @@
 1. **any, unknown, never** এর পার্থক্য
 2. **interface এবং type** এর মধ্যে পার্থক্য
 
----
-
-# 1. any, unknown, never — পার্থক্য
+### ==> 1. any, unknown, never — পার্থক্য
 
 ## any
 
-**যেকোনো ভ্যালু হতে পারে এবং যেকোনো অপারেশন করা যায়।**
-TypeScript কোনো warning দেবে না।
-
-Flexible
-Unsafe
+**A. any যেকোনো ভ্যালুর type হতে পারে এবং তার দ্বারা সাধারনত যেকোনো type এর কাজ করা যায়। TypeScript কোনো warning দেবে না।**
+B. এটা ব্যবহার করলে রানটাইমে error আসতে পারে কিন্তূ তাতখনাত ঝামেলা থেকে মূক্ত হয়া জায়
+C. এটা সরাসরি javscript এর মত কাজ করে
 
 **উদাহরণ:**
 
 ```ts
-let data: any;
-data = 10;
-data = "Hello";
-data.toUpperCase(); // No error, but risky
-```
+type Data = any;
 
----
+let data1: Data = "hello";
+data1 = 5;
+data1 = undefined;
+
+let data2: any;
+data2 = 10;
+data2 = "Hello";
+data2.toUpperCase();
+```
 
 ## unknown
 
-**যেকোনো ভ্যালু রাখা যায়, কিন্তু ব্যবহার করতে চাইলে টাইপ চেক করতে হবে।**
-
-Safe any
-Type-check ছাড়া ব্যবহার করা যায় না
+**A.যেকোনো ভ্যালু রাখা যায়, কিন্তু ব্যবহার করতে চাইলে টাইপ চেক করতে হবে। বা Type Assertion ব্যবোহার করতে হবে**
+B.এটা any থেকে বেশি safety দেয় । এটা সরাসরি javscript এর মত কাজ করে না ।
+C. type check করা ছাড়া ব্যবহার করলে error আসতে পারে
 
 **উদাহরণ:**
 
 ```ts
-let value: unknown;
-value = "Hello";
+const usingunknown = (value: unknown) => {
+  if (typeof value === "string") {
+    return "i'm string type";
+  } else if (typeof value === "number") {
+    return "i'm number type";
+  } else {
+    return "avabe onno type o hote pare";
+  }
+};
 
-// value.toUpperCase();  Error
-
-if (typeof value === "string") {
-  console.log(value.toUpperCase());
-  Safe;
-}
+usingunknown("");
+usingunknown(1);
+usingunknown(true);
 ```
-
----
 
 ## never
 
-**এই টাইপে কোনো ভ্যালু থাকতে পারে না।**
-সাধারণত error throw অথবা infinite loop ফাংশনে ব্যবহৃত হয়।
+**A.কোন type এর কোন value ই return করে না ।**
+B.never সাধারণত তখনই হয় যখন ফাংশন error throw করে
+C.অথবা infinit loop যখন হয়
 
 **উদাহরণ:**
 
 ```ts
-function throwError(): never {
-  throw new Error("Error occured");
-}
+const usingNeverThrow = (mas: string): never => {
+  throw Error(mas);
+};
+
+usingNeverThrow("Something  wrong!");
+
+const usingNeverLoop = (): never => {
+  while (true) {}
+};
+
+console.log(usingNeverLoop());
 ```
 
 ---
@@ -102,7 +112,7 @@ type Employee = Person & {
 
 ---
 
-## 🔹 **2. Declaration Merging**
+## **2. Declaration Merging**
 
 - interface → merge হয়
 - type → merge হয় না
@@ -119,7 +129,7 @@ interface Box {
 
 ---
 
-## 🔹 **3. Primitive Type Support**
+## **3. Primitive Type Support**
 
 type → primitive, union, tuple, function সবই করা যায়
 interface → object structure only
